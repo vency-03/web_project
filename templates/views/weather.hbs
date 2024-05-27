@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+{{!-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="images/w1.jpeg">
+</head> --}}
+{{>heades}}
+<body>
+  <div class="container-fluid main_menu">
+    <div class="row">
+        <div class="col-md-10 col-12 mx-auto">
+        </div>
+    </div>
+  </div>
+  {{>navbar}}
+    {{!-- <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><i class="fa-solid fa-snowflake"></i> Weather <i class="fa-solid fa-snowflake"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/weather">Weather<span class="sr-only">(current)</span></a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About Us</a>
+            </li>
+          
+           
+          </ul>
+        </div>
+    </nav> --}}
+
+    <div class="container-fluid main_header">
+      <div class="row">
+          <div class="col-md-10 col-12 mx-auto">
+            <div class="row">
+
+             
+
+             <div class="main-content">
+                <form class="temp_form" id="city">
+                    <input type="text" id="cityName" placeholder="Enter Your City Name" autocomplete="off">
+                    <input type="submit" value="search" id="submitbtn">
+                </form>
+             </div>
+
+
+            <div class="tempInfo">
+                <div class="top_layer">
+                    <p id="day">Tuesday</p>
+                    <p id="today_data">13 OCT</p>
+                </div>
+
+                <div class="main_layer">
+                    <p id="city_name">Get Output Here</p>
+                    <div class="middle_layer data_hide">
+                        <p id="temp"><span id="temp_real_val">0</span> <sup>o</sup>C</p>
+                        <p id="temp_status"><i class="fa-solid fa-cloud"></i></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            </div>
+          </div>
+      </div>
+  </div>
+{{>footer}}
+    {{!-- <footer>
+      <p>Created With Love &hearts; By Technical</p>
+    </footer> --}}
+
+    <script src="js/main.js">
+    </script>
+
+    <script>
+
+        const getCurrentDay=() => {
+                var weekday=new Array(7);
+                weekday[0]="sunday";
+                weekday[1]="monday";
+                weekday[2]="tuesday";
+                weekday[3]="wednesday";
+                weekday[4]="thursday";
+                weekday[5]="friday";
+                weekday[6]="saturday";
+                
+                let curTime=new Date();
+                let days=weekday[curTime.getDay()];
+                let day=document.getElementById('day');
+
+            day.innerText=days;
+            };
+
+            getCurrentDay();
+
+
+
+            const getCurrentTime=()=>{
+
+                var months=[
+                    "jan",
+                    "feb",
+                    "mar",
+                    "apr",
+                    "may",
+                    "june",
+                    "july",
+                    "aug",
+                    "sep",
+                    "oct",
+                    "nov",
+                    "dec",
+                ]
+                var curTime=new Date();
+                var month=months[curTime.getMonth()];
+                var date=curTime.getDate();
+
+                let hours=curTime.getHours();
+                let mins=curTime.getMinutes();
+                let period="AM";
+                
+                if(hours>11)
+                {
+                    period="PM";
+                    if(hours>12)
+                    {
+                        hours-=12;
+                    }
+                }
+                if(mins<10)
+                {
+                    mins="0"+mins;
+                }
+                // var year=curTime.getFullYear();
+                // let m=month + "|" + date;
+                // return m;
+                // let a=hours + ":"+ mins + ":"+period;
+                // return a;
+
+                const today_data=document.getElementById("today_data");
+                today_data.innerText=`${month} ${date} | ${hours}:${mins} : ${period}`;
+            };
+
+            const curDate=document.getElementById("date");
+
+          //getCurrentDay();
+          //getCurrentTime();
+          curDate.innerHTML=getCurrentTime() + "|"+ getCurrentDay();
+    </script>
+</body>
+</html>
